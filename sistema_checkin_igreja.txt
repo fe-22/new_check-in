@@ -1,0 +1,20 @@
+sistema_checkin_igreja ADFidelidade/
+│
+├── app.py                 # Aplicação Flask principal
+├── checkin.db            # Banco de dados SQLite
+├── requirements.txt      # Dependências do projeto
+│
+├── templates/            # Templates HTML
+│   ├── base.html
+│   ├── index.html
+│   ├── login_lider.html
+│   ├── cadastrar.html
+│   ├── checkin_rapido.html
+│   └── painel_lider.html
+│
+├── static/               # Arquivos estáticos (opcional)
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+└── README.md             # Documentação do projeto

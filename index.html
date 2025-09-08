@@ -1,0 +1,59 @@
+
+{% extends "base.html" %}
+
+{% block title %}Início - Sistema de Check-in{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto text-center">
+        <div class="hero-section mb-5">
+            <h1 class="display-4 text-primary mb-3">
+                <i class="bi bi-people-fill"></i> Sistema de Check-in
+            </h1>
+            <p class="lead">Bem-vindo ao sistema de check-in ADFidelidade</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">
+                            <i class="bi bi-lightning-charge"></i> Check-in Rápido
+                        </h3>
+                        <p class="card-text">Faça seu check-in de forma rápida</p>
+                        <a href="/checkin_rapido" class="btn btn-primary btn-lg">
+                            Fazer Check-in
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-success">
+                            <i class="bi bi-person-plus"></i> Cadastro
+                        </h3>
+                        <p class="card-text">Cadastre-se como Obreiro</p>
+                        <a href="/cadastrar" class="btn btn-success btn-lg">
+                            Cadastrar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <i class="bi bi-info-circle"></i> Informações
+                    </h4>
+                    <p>Este sistema foi desenvolvido para facilitar o controle de presença dos Obreiros ADFidelidade.</p>
+                    <p>Para acessar a área de líderes, faça login com suas credenciais.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

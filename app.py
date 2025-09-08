@@ -59,7 +59,24 @@ def init_db():
             email TEXT UNIQUE NOT NULL
         )
     ''')
-    
+    # Caminho do banco de dados
+DB_PATH = "checkin.db"
+
+def add_departamento_column():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Verifica colunas existentes na tabela
+    cursor.execute("PRAGMA table_info(membros)")
+    colunas = [col[1] for col in cursor.fetchall()]
+
+    if "departamento" not in colunas:
+        print("✅ Coluna 'departamento' não existe. Criando...")
+        cursor.execute("ALTER TABLE membros ADD COLUMN departamento TEXT")
+        conn.commit()
+        print("✅ Coluna 'departamento' criada com sucesso!")
+    else:
+        print("ℹ️ Coluna 'departamento' já existe, nenhuma alteração feita.")
     conn.commit()
     conn.close()
 
@@ -656,4 +673,8 @@ if __name__ == '__main__':
     criar_templates()
     print("✅ Sistema pronto! Acesse http://localhost:5000")
     print("🔐 Credenciais: usuário 'admin', senha 'admin123'")
+    try:
+        add_departamento_column()
+    except Exception as e:
+        print(f"❌ Erro ao atualizar o banco: {e}")
     app.run(debug=True, port=5000)

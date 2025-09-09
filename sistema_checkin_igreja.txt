@@ -18,3 +18,12 @@ sistema_checkin_igreja ADFidelidade/
 │   └── images/
 │
 └── README.md             # Documentação do projeto
+
+
+git add C:\Users\DELL\OneDrive\ws_vscode\new_check-in
+git add .
+git add --all
+git remote add origin C:\Users\DELL\OneDrive\ws_vscode\new_check-in.git
+git push -u origin master
+
+

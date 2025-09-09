@@ -1,0 +1,137 @@
+
+{% extends "base.html" %}
+
+{% block title %}Painel do Líder{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">
+                <i class="bi bi-speedometer2"></i> Painel do Líder
+            </h2>
+            <div>
+                <a href="/" class="btn btn-outline-primary btn-sm me-2">
+                    <i class="bi bi-house"></i> Início
+                </a>
+                <a href="/logout" class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-box-arrow-right"></极速赛车开奖直播i> Sair
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-people-fill"></i> Total de Obreiros
+                </h5>
+                <h3 class="card-text">{{ total_membros }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-check-circle-fill"></i> Check-ins (7 dias)
+                </h5>
+                <h3 class="card-text">{{ checkins_recentes }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-person-check-fill"></i> Líder Logado
+                </h5>
+                <h6 class="card-text">{{ session.nome }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-clock-history"></i> Últimos Check-ins
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if ultimos_checkins %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Data/Hora</th>
+                                <th>Tipo</th>
+                                <th>Localização</th>  <!-- NOVO: Coluna de localização -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for checkin in ultimos_checkins %}
+                            <tr>
+                                <td>{{ checkin['nome'] }}</td>
+                                <td>{{ checkin['data_checkin'] }}</td>
+                                <td>{{ checkin['tipo'] }}</td>
+                                <td>{{ checkin['localizacao'] or 'N/A' }}</td>  <!-- NOVO: Mostrar localização -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">Nenhum check-in registrado ainda.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-list-ul"></i> Lista de Obreiros
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if membros %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>Departamento</th>  <!-- ALTERADO: grupo_celular → departamento -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for membro in membros %}
+                            <tr>
+                                <td>{{ membro['nome'] }}</td>
+                                <td>{{ membro['email'] }}</td>
+                                <td>{{ membro['telefone'] or 'N/A' }}</td>
+                                <td>{{ membro['departamento'] or 'N/A' }}</td>  <!-- ALTERADO: grupo_celular → departamento -->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">Nenhum obreiro cadastrado ainda.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

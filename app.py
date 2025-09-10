@@ -4,6 +4,7 @@ import datetime
 import requests
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')

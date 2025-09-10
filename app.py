@@ -6,7 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'fallback_key_para_desenvolvimento')
+app.secret_key = os.environ.get('SECRET_KEY')
+if not app.secret_key:
+    raise ValueError("SECRET_KEY não configurada - configure a variável de ambiente")
+
 
 # Configuração do banco de dados
 DATABASE = os.environ.get('DATABASE_URL', 'checkin.db')

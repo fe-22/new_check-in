@@ -6,10 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 app = Flask(__name__)
-app.secret_key = 'Obreiros'
+app.secret_key = os.environ.get('SECRET_KEY', 'fallback_key_para_desenvolvimento')
 
 # Configuração do banco de dados
-DATABASE = 'checkin.db'
+DATABASE = os.environ.get('DATABASE_URL', 'checkin.db')
 
 def get_db_connection():
     """Cria e retorna uma conexão com o banco de dados"""

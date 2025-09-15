@@ -1,57 +1,45 @@
-
 {% extends "base.html" %}
 
-{% block title %}Início - Sistema de Check-in{% endblock %}
-
 {% block content %}
-<div class="row">
-    <div class="col-md-8 mx-auto text-center">
-        <div class="hero-section mb-5">
-            <h1 class="display-4 text-primary mb-3">
-                <i class="bi bi-people-fill"></i> Sistema de Check-in
-            </h1>
-            <p class="lead">Bem-vindo ao sistema de check-in ADFidelidade</p>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title text-primary">
-                            <i class="bi bi-lightning-charge"></i> Check-in Rápido
-                        </h3>
-                        <p class="card-text">Faça seu check-in de forma rápida</p>
-                        <a href="/checkin_rapido" class="btn btn-primary btn-lg">
-                            Fazer Check-in
-                        </a>
-                    </div>
-                </div>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header text-center bg-primary text-white">
+                <h3><i class="bi bi-check-circle"></i> Check-in de Obreiros</h3>
+                <p class="mb-0">Assembleia de Deus Ministério Fidelidade</p>
             </div>
-            
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <h3 class="card-title text-success">
-                            <i class="bi bi-person-plus"></i> Cadastro
-                        </h3>
-                        <p class="card-text">Cadastre-se como Obreiro</p>
-                        <a href="/cadastrar" class="btn btn-success btn-lg">
-                            Cadastrar
-                        </a>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('checkin_obreiro') }}">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome Completo *</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="grupo" class="form-label">Grupo/Ministerial *</label>
+                        <select class="form-select" id="grupo" name="grupo" required>
+                            <option value="" selected disabled>Selecione seu grupo</option>
+                            <option value="Louvor">Louvor</option>
+                            <option value="Intercessão">Intercessão</option>
+                            <option value="Recepção">Recepção</option>
+                            <option value="Diaconia">Diaconia</option>
+                            <option value="Educação Cristã">Educação Cristã</option>
+                            <option value="Evangelismo">Evangelismo</option>
+                            <option value="Social">Social</option>
+                            <option value="Infantil">Infantil</option>
+                            <option value="Juventude">Juventude</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-check-lg"></i> Fazer Check-in
+                    </button>
+                </form>
             </div>
-        </div>
-
-        <div class="mt-5">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">
-                        <i class="bi bi-info-circle"></i> Informações
-                    </h4>
-                    <p>Este sistema foi desenvolvido para facilitar o controle de presença dos Obreiros ADFidelidade.</p>
-                    <p>Para acessar a área de líderes, faça login com suas credenciais.</p>
-                </div>
+            <div class="card-footer text-center">
+                <small>Problemas com o check-in? Procure o líder do seu grupo</small>
+                <br>
+                <a href="{{ url_for('login_lider') }}" class="btn btn-sm btn-outline-secondary mt-2">
+                    Acesso de Líder
+                </a>
             </div>
         </div>
     </div>
